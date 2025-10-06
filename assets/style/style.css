@@ -364,14 +364,24 @@ body {
 
 .products__filters {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 20px;
     margin-bottom: 40px;
+}
+
+.filter__button{
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    text-align: center !important;
+    justify-content: center;
+    padding: 12px 32px !important;
 }
 
 .filter__item {
     display: flex;
     flex-direction: column;
+    justify-content: flex-end;
 }
 
 .filter__label {
