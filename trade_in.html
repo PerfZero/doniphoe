@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <!-- Meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trade-in - Don.iPhone</title>
+    
+    <!-- External fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- External libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Local stylesheets -->
+    <link rel="stylesheet" href="/assets/style/reset.css">
+    <link rel="stylesheet" href="/assets/style/style.css">
+</head>
+<body>
+    <!-- ========================================== -->
+    <!-- HEADER SECTION -->
+    <!-- ========================================== -->
+    <header class="header">
+        <div class="container">
+            <div class="header__content">
+                <!-- Left navigation menu -->
+                <div class="header__left">
+                    <a href="#" class="header__link">
+                        <i class="fas fa-headphones"></i>
+                        <span>Наушники</span>
+                    </a>
+                    <a href="#" class="header__link">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span>Аксессуары</span>
+                    </a>
+                </div>
+                
+                <!-- Logo -->
+                <div class="header__logo">
+                    <a href="/home.html">
+                        <img src="/assets/img/logo.svg" alt="Don.iPhone Logo">
+                    </a>
+                </div>
+                
+                <!-- Right navigation (cart) -->
+                <div class="header__right">
+                    <a href="#" class="header__cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart__count">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ========================================== -->
+    <!-- END HEADER SECTION -->
+    <!-- ========================================== -->
+
+    <!-- ========================================== -->
+    <!-- MAIN CONTENT SECTION -->
+    <!-- ========================================== -->
+    <main class="trade-in-page">
+        <div class="container">
+            <!-- Breadcrumbs navigation -->
+            <div class="breadcrumbs">
+                <a href="/home.html" class="breadcrumbs__link">Главная</a>
+                <span class="breadcrumbs__separator">/</span>
+                <span class="breadcrumbs__current">Trade-in</span>
+            </div>
+
+            <!-- Page title -->
+            <div class="trade-in__header">
+                <div class="trade-in__header-content">
+                    <div class="trade-in__header-text">
+                        <h1 class="trade-in__title">Trade-in</h1>
+                        <p class="trade-in__subtitle">Обменяйте свой старый iPhone на новый с доплатой</p>
+                        
+                        <!-- Requirements section -->
+                        <section class="trade-in__section">
+                            <h2 class="trade-in__section-title">Требования</h2>
+                            <div class="trade-in__list">
+                                <!-- {% for requirement in requirements %} -->
+                                <div class="trade-in__item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Устройство должно быть в рабочем состоянии</span>
+                                </div>
+                                <div class="trade-in__item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Отсутствие значительных внешних повреждений</span>
+                                </div>
+                                <div class="trade-in__item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Наличие оригинальной упаковки приветствуется</span>
+                                </div>
+                                <div class="trade-in__item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Устройство должно быть разблокировано</span>
+                                </div>
+                                <div class="trade-in__item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Отсутствие следов попадания влаги</span>
+                                </div>
+                                <!-- {% endfor %} -->
+                            </div>
+                        </section>
+
+                        <!-- Rules section -->
+                        <section class="trade-in__section">
+                            <h2 class="trade-in__section-title">Правила</h2>
+                            <div class="trade-in__list">
+                                <!-- {% for rule in rules %} -->
+                                <div class="trade-in__item">
+                                    <i class="fas fa-info-circle"></i>
+                                    <span>Оценка устройства производится на месте</span>
+                                </div>
+                                <div class="trade-in__item">
+                                    <i class="fas fa-info-circle"></i>
+                                    <span>Сумма скидки зависит от состояния устройства</span>
+                                </div>
+                                <div class="trade-in__item">
+                                    <i class="fas fa-info-circle"></i>
+                                    <span>Компания оставляет за собой право отказать в приеме устройства</span>
+                                </div>
+                                <div class="trade-in__item">
+                                    <i class="fas fa-info-circle"></i>
+                                    <span>Обмен возможен только на устройства из нашего каталога</span>
+                                </div>
+                                <div class="trade-in__item">
+                                    <i class="fas fa-info-circle"></i>
+                                    <span>Доплата производится наличными или банковской картой</span>
+                                </div>
+                                <!-- {% endfor %} -->
+                            </div>
+                        </section>
+                    </div>
+                    <div class="trade-in__header-image">
+                        <img src="/assets/img/main.png" alt="iPhone Trade-in">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trade-in content -->
+            <div class="trade-in__content">
+
+                <!-- Price section -->
+                <section class="trade-in__section">
+                    <h2 class="trade-in__section-title">Примерный прайс на оценку</h2>
+                    <div class="trade-in__price-list">
+                        <!-- {% for price_item in price_list %} -->
+                        <div class="trade-in__price-item">
+                            <h3 class="trade-in__model">iPhone 12 mini</h3>
+                            <div class="trade-in__variants">
+                                <div class="trade-in__variant">
+                                    <span class="trade-in__variant-name">iPhone 12 mini 64Gb</span>
+                                    <span class="trade-in__variant-price">11 000 ₽</span>
+                                </div>
+                                <div class="trade-in__variant">
+                                    <span class="trade-in__variant-name">iPhone 12 mini 128Gb</span>
+                                    <span class="trade-in__variant-price">12 000 ₽</span>
+                                </div>
+                                <div class="trade-in__variant">
+                                    <span class="trade-in__variant-name">iPhone 12 mini 256Gb</span>
+                                    <span class="trade-in__variant-price">13 000 ₽</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="trade-in__price-item">
+                            <h3 class="trade-in__model">iPhone 12</h3>
+                            <div class="trade-in__variants">
+                                <div class="trade-in__variant">
+                                    <span class="trade-in__variant-name">iPhone 12 64Gb</span>
+                                    <span class="trade-in__variant-price">15 000 ₽</span>
+                                </div>
+                                <div class="trade-in__variant">
+                                    <span class="trade-in__variant-name">iPhone 12 128Gb</span>
+                                    <span class="trade-in__variant-price">16 000 ₽</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- {% endfor %} -->
+                    </div>
+                </section>
+
+                <!-- Benefits section -->
+                <section class="trade-in__section">
+                    <h2 class="trade-in__section-title">Преимущества Trade-in</h2>
+                    <div class="trade-in__benefits">
+                        <!-- {% for benefit in benefits %} -->
+                        <div class="trade-in__benefit">
+                            <div class="trade-in__benefit-icon">
+                                <i class="fas fa-money-bill-wave"></i>
+                            </div>
+                            <div class="trade-in__benefit-content">
+                                <h3>Выгодная цена</h3>
+                                <p>Получите максимальную стоимость за ваше устройство</p>
+                            </div>
+                        </div>
+                        <div class="trade-in__benefit">
+                            <div class="trade-in__benefit-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="trade-in__benefit-content">
+                                <h3>Быстрый обмен</h3>
+                                <p>Весь процесс занимает не более 30 минут</p>
+                            </div>
+                        </div>
+                        <div class="trade-in__benefit">
+                            <div class="trade-in__benefit-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div class="trade-in__benefit-content">
+                                <h3>Гарантия качества</h3>
+                                <p>Все устройства проходят тщательную проверку</p>
+                            </div>
+                        </div>
+                        <!-- {% endfor %} -->
+                    </div>
+                </section>
+
+                <!-- CTA section -->
+                <section class="trade-in__cta">
+                    <div class="trade-in__cta-content">
+                        <h2>Готовы обменять свой iPhone?</h2>
+                        <p>Приходите в наш магазин для оценки и обмена</p>
+                        <div class="trade-in__cta-buttons">
+                            <a href="tel:+79239993777" class="btn btn--primary">
+                                <i class="fas fa-phone"></i>
+                                Позвонить
+                            </a>
+                            <a href="/home.html" class="btn btn--secondary">
+                                <i class="fas fa-shopping-cart"></i>
+                                Посмотреть каталог
+                            </a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+    <!-- ========================================== -->
+    <!-- END MAIN CONTENT SECTION -->
+    <!-- ========================================== -->
+
+    <!-- ========================================== -->
+    <!-- FOOTER SECTION -->
+    <!-- ========================================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <!-- Brand section -->
+                <div class="footer__brand">
+                    <div class="footer__logo">
+                        <img src="/assets/img/logo.svg" alt="Don.iPhone">
+                    </div>
+                    <p class="footer__tagline">Техника Apple</p>
+                </div>
+                
+                <!-- Social links -->
+                <div class="footer__social">
+                    <a href="#" class="footer__social-link">
+                        <i class="fab fa-vk"></i>
+                    </a>
+                </div>
+                
+                <!-- Navigation -->
+                <div class="footer__nav">
+                    <a href="/home.html" class="footer__nav-link">ГЛАВНАЯ</a>
+                    <a href="#" class="footer__nav-link">КАТАЛОГ</a>
+                    <a href="#" class="footer__nav-link">ПОЛИТИКА</a>
+                </div>
+                
+                <!-- Contact info -->
+                <div class="footer__contact">
+                    <a href="tel:+79239993777" class="footer__phone">+7 (923) 999 3 777</a>
+                </div>
+                
+                <!-- Copyright -->
+                <div class="footer__copyright">
+                    <span>© Don.iPhone 2025</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- ========================================== -->
+    <!-- END FOOTER SECTION -->
+    <!-- ========================================== -->
+</body>
+</html>

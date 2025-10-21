@@ -8,6 +8,8 @@ class ProductSlider {
         this.prevBtn = document.querySelector('.slider__btn--prev');
         this.nextBtn = document.querySelector('.slider__btn--next');
         
+        if (!this.slider) return;
+        
         this.currentSlide = 0;
         this.totalSlides = this.slides.length;
         
@@ -15,6 +17,8 @@ class ProductSlider {
     }
     
     init() {
+        if (!this.prevBtn || !this.nextBtn) return;
+        
         this.prevBtn.addEventListener('click', () => this.prevSlide());
         this.nextBtn.addEventListener('click', () => this.nextSlide());
         
@@ -63,6 +67,8 @@ class TabsManager {
         this.tabButtons = document.querySelectorAll('.tabs__button');
         this.tabPanels = document.querySelectorAll('.tabs__panel');
         
+        if (this.tabButtons.length === 0) return;
+        
         this.init();
     }
     
@@ -98,8 +104,10 @@ class ProductOptions {
     constructor() {
         this.optionValues = document.querySelectorAll('.option__value');
         this.addonCheckboxes = document.querySelectorAll('.addon__checkbox');
+        this.memoryItems = document.querySelectorAll('.memory-price__item');
         this.priceElement = document.querySelector('.price__current');
         this.basePrice = 179990;
+        
         this.init();
     }
     
@@ -122,6 +130,26 @@ class ProductOptions {
                 this.updatePrice();
             });
         });
+        
+        this.memoryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                this.selectMemory(item);
+            });
+        });
+    }
+    
+    selectMemory(selectedItem) {
+        this.memoryItems.forEach(item => {
+            item.classList.remove('memory-price__item--active');
+        });
+        
+        selectedItem.classList.add('memory-price__item--active');
+        
+        const price = selectedItem.getAttribute('data-price');
+        if (price && this.priceElement) {
+            this.basePrice = parseInt(price);
+            this.updatePrice();
+        }
     }
     
     updatePrice() {
@@ -141,8 +169,52 @@ class ProductOptions {
     }
 }
 
+class ProductCarousel {
+    constructor() {
+        this.swipers = [];
+        this.init();
+    }
+    
+    init() {
+        const swiperElements = document.querySelectorAll('.product__swiper');
+        
+        if (swiperElements.length === 0) return;
+        
+        swiperElements.forEach((element, index) => {
+            const swiper = new Swiper(element, {
+                loop: true,
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                touchRatio: 1,
+                touchAngle: 45,
+                grabCursor: true,
+                effect: 'slide',
+                speed: 300,
+                spaceBetween: 0,
+                slidesPerView: 1,
+                centeredSlides: true,
+                watchSlidesProgress: true,
+                on: {
+                    init: function() {
+                        this.el.style.opacity = '1';
+                    }
+                }
+            });
+            
+            this.swipers.push(swiper);
+        });
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     new ProductSlider();
     new TabsManager();
     new ProductOptions();
+    new ProductCarousel();
 });
