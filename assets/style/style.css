@@ -1,5 +1,5 @@
 :root {
-    --primary-bg: #000;
+    --primary-bg: #313131;
     --secondary-bg: #fff;
     --accent-color: #c92243;
     --text-primary: #fff;
@@ -441,9 +441,7 @@ body {
 
 .product__gallery {
     position: relative;
-    height: 200px;
     overflow: hidden;
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
     border-radius: 8px 8px 0 0;
 }
 
@@ -454,15 +452,15 @@ body {
 
 .product__swiper .swiper-slide {
     display: flex;
-    align-items: center;
+    align-items: stretch;
     justify-content: center;
- 
 }
 
 .product__swiper .swiper-slide img {
     max-width: 100%;
+    height: 100%;
     max-height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
 }
 
@@ -622,9 +620,9 @@ body {
         gap: 15px;
     }
     
-    .product__gallery {
+    /* .product__gallery {
         height: 150px;
-    }
+    } */
     
     .product__swiper .swiper-button-prev,
     .product__swiper .swiper-button-next {
@@ -961,6 +959,11 @@ body {
 
 .slider__btn--next {
     right: 16px;
+}
+
+.footer__social{
+    display: flex;
+    justify-content: center;
 }
 
 .slider__btn i {
