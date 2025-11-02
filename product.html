@@ -13,6 +13,7 @@
     
     <!-- External libraries -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
     
     <!-- Local stylesheets -->
     <link rel="stylesheet" href="/assets/style/reset.css">
@@ -77,52 +78,41 @@
                 <!-- Product gallery -->
                 <div class="product__gallery">
                     <!-- Main product slider -->
-                    <div class="product__slider">
-                        <div class="slider__container">
-                            <div class="slider__track">
-                                <div class="slider__slide active">
-                                    <img src="/assets/img/main.png" alt="iPhone 17 Pro Max">
-                                </div>
-                                <div class="slider__slide">
-                                    <img src="/assets/img/main.png" alt="iPhone 17 Pro Max">
-                                </div>
-                                <div class="slider__slide">
-                                    <img src="/assets/img/main.png" alt="iPhone 17 Pro Max">
-                                </div>
-                                <div class="slider__slide">
-                                    <img src="/assets/img/main.png" alt="iPhone 17 Pro Max">
-                                </div>
+                    <div class="swiper product__swiper product__swiper--main">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <img src="/assets/img/main.png" alt="iPhone 17 Pro Max">
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="/assets/img/main.png" alt="iPhone 17 Pro Max">
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="/assets/img/main.png" alt="iPhone 17 Pro Max">
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="/assets/img/main.png" alt="iPhone 17 Pro Max">
                             </div>
                         </div>
-                        <!-- Slider navigation buttons -->
-                        <button class="slider__btn slider__btn--prev">
-                            <i class="fas fa-chevron-left"></i>
-                        </button>
-                        <button class="slider__btn slider__btn--next">
-                            <i class="fas fa-chevron-right"></i>
-                        </button>
-                        <!-- Slider dots indicator -->
-                        <div class="slider__dots">
-                            <span class="slider__dot active"></span>
-                            <span class="slider__dot"></span>
-                            <span class="slider__dot"></span>
-                            <span class="slider__dot"></span>
-                        </div>
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-pagination"></div>
                     </div>
                     
                     <!-- Product thumbnails -->
-                    <div class="product__thumbnails">
-                        <div class="product__thumbnail active">
-                            <img src="/assets/img/main.png" alt="iPhone 17 Pro Max">
-                        </div>
-                        <div class="product__thumbnail">
-                            <img src="/assets/img/main.png" alt="iPhone 17 Pro Max">
-                        </div>
-                        <div class="product__thumbnail">
-                            <img src="/assets/img/main.png" alt="iPhone 17 Pro Max">
-                        </div>
-                        <div class="product__thumbnail">
-                            <img src="/assets/img/main.png" alt="iPhone 17 Pro Max">
+                    <div class="swiper product__thumbnails" id="productThumbnails">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide product__thumbnail">
+                                <img src="/assets/img/main.png" alt="iPhone 17 Pro Max">
+                            </div>
+                            <div class="swiper-slide product__thumbnail">
+                                <img src="/assets/img/main.png" alt="iPhone 17 Pro Max">
+                            </div>
+                            <div class="swiper-slide product__thumbnail">
+                                <img src="/assets/img/main.png" alt="iPhone 17 Pro Max">
+                            </div>
+                            <div class="swiper-slide product__thumbnail">
+                                <img src="/assets/img/main.png" alt="iPhone 17 Pro Max">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -470,6 +460,7 @@
     <!-- ========================================== -->
     <!-- JAVASCRIPT SECTION -->
     <!-- ========================================== -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="/assets/js/product.js"></script>
     <!-- ========================================== -->
     <!-- END JAVASCRIPT SECTION -->

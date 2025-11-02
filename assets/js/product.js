@@ -1,63 +1,81 @@
 class ProductSlider {
     constructor() {
-        this.slider = document.querySelector('.product__slider');
-        this.track = document.querySelector('.slider__track');
-        this.slides = document.querySelectorAll('.slider__slide');
-        this.dots = document.querySelectorAll('.slider__dot');
-        this.thumbnails = document.querySelectorAll('.product__thumbnail');
-        this.prevBtn = document.querySelector('.slider__btn--prev');
-        this.nextBtn = document.querySelector('.slider__btn--next');
-        
-        if (!this.slider) return;
-        
-        this.currentSlide = 0;
-        this.totalSlides = this.slides.length;
-        
+        this.sliders = [];
         this.init();
     }
     
     init() {
-        if (!this.prevBtn || !this.nextBtn) return;
+        const sliderElements = document.querySelectorAll('.product__slider');
         
-        this.prevBtn.addEventListener('click', () => this.prevSlide());
-        this.nextBtn.addEventListener('click', () => this.nextSlide());
+        if (sliderElements.length === 0) return;
         
-        this.dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => this.goToSlide(index));
+        sliderElements.forEach((slider) => {
+            const track = slider.querySelector('.slider__track');
+            const slides = slider.querySelectorAll('.slider__slide');
+            const dots = slider.querySelectorAll('.slider__dot');
+            const thumbnails = slider.closest('.product__gallery')?.querySelectorAll('.product__thumbnail');
+            const prevBtn = slider.querySelector('.slider__btn--prev');
+            const nextBtn = slider.querySelector('.slider__btn--next');
+            
+            if (!track || !slides.length || !prevBtn || !nextBtn) return;
+            
+            const sliderInstance = {
+                slider,
+                track,
+                slides,
+                dots,
+                thumbnails: thumbnails || [],
+                prevBtn,
+                nextBtn,
+                currentSlide: 0,
+                totalSlides: slides.length
+            };
+            
+            prevBtn.addEventListener('click', () => this.prevSlide(sliderInstance));
+            nextBtn.addEventListener('click', () => this.nextSlide(sliderInstance));
+            
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => this.goToSlide(sliderInstance, index));
+            });
+            
+            sliderInstance.thumbnails.forEach((thumbnail, index) => {
+                thumbnail.addEventListener('click', () => this.goToSlide(sliderInstance, index));
+            });
+            
+            this.updateSlider(sliderInstance);
+            this.sliders.push(sliderInstance);
+        });
+    }
+    
+    prevSlide(instance) {
+        instance.currentSlide = (instance.currentSlide - 1 + instance.totalSlides) % instance.totalSlides;
+        this.updateSlider(instance);
+    }
+    
+    nextSlide(instance) {
+        instance.currentSlide = (instance.currentSlide + 1) % instance.totalSlides;
+        this.updateSlider(instance);
+    }
+    
+    goToSlide(instance, index) {
+        instance.currentSlide = index;
+        this.updateSlider(instance);
+    }
+    
+    updateSlider(instance) {
+        const translateX = -instance.currentSlide * 25;
+        instance.track.style.transform = `translateX(${translateX}%)`;
+        
+        instance.dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === instance.currentSlide);
         });
         
-        this.thumbnails.forEach((thumbnail, index) => {
-            thumbnail.addEventListener('click', () => this.goToSlide(index));
+        instance.slides.forEach((slide, index) => {
+            slide.classList.toggle('active', index === instance.currentSlide);
         });
         
-        this.updateSlider();
-    }
-    
-    prevSlide() {
-        this.currentSlide = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
-        this.updateSlider();
-    }
-    
-    nextSlide() {
-        this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
-        this.updateSlider();
-    }
-    
-    goToSlide(index) {
-        this.currentSlide = index;
-        this.updateSlider();
-    }
-    
-    updateSlider() {
-        const translateX = -this.currentSlide * 25;
-        this.track.style.transform = `translateX(${translateX}%)`;
-        
-        this.dots.forEach((dot, index) => {
-            dot.classList.toggle('active', index === this.currentSlide);
-        });
-        
-        this.thumbnails.forEach((thumbnail, index) => {
-            thumbnail.classList.toggle('active', index === this.currentSlide);
+        instance.thumbnails.forEach((thumbnail, index) => {
+            thumbnail.classList.toggle('active', index === instance.currentSlide);
         });
     }
 }
@@ -176,30 +194,36 @@ class ProductCarousel {
     }
     
     init() {
-        const swiperElements = document.querySelectorAll('.product__swiper');
+        const mainSwiperEl = document.querySelector('.product__swiper--main');
+        const thumbnailsEl = document.getElementById('productThumbnails');
         
-        if (swiperElements.length === 0) return;
-        
-        swiperElements.forEach((element, index) => {
-            const swiper = new Swiper(element, {
+        if (mainSwiperEl && thumbnailsEl) {
+            const thumbnailsSwiper = new Swiper(thumbnailsEl, {
+                spaceBetween: 10,
+                slidesPerView: 4,
+                freeMode: true,
+                watchSlidesProgress: true,
+            });
+            
+            const mainSwiper = new Swiper(mainSwiperEl, {
                 loop: true,
+                spaceBetween: 10,
                 navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
+                    nextEl: mainSwiperEl.querySelector('.swiper-button-next'),
+                    prevEl: mainSwiperEl.querySelector('.swiper-button-prev'),
                 },
                 pagination: {
-                    el: '.swiper-pagination',
+                    el: mainSwiperEl.querySelector('.swiper-pagination'),
                     clickable: true,
+                },
+                thumbs: {
+                    swiper: thumbnailsSwiper,
                 },
                 touchRatio: 1,
                 touchAngle: 45,
                 grabCursor: true,
                 effect: 'slide',
                 speed: 300,
-                spaceBetween: 0,
-                slidesPerView: 1,
-                centeredSlides: true,
-                watchSlidesProgress: true,
                 on: {
                     init: function() {
                         this.el.style.opacity = '1';
@@ -207,8 +231,49 @@ class ProductCarousel {
                 }
             });
             
-            this.swipers.push(swiper);
-        });
+            this.swipers.push(mainSwiper, thumbnailsSwiper);
+        } else {
+            const swiperElements = document.querySelectorAll('.product__swiper:not(.product__swiper--main)');
+            
+            if (swiperElements.length === 0) return;
+            
+            swiperElements.forEach((element) => {
+                const swiper = new Swiper(element, {
+                    loop: true,
+                    loopedSlides: 3,
+                    navigation: {
+                        nextEl: element.querySelector('.swiper-button-next'),
+                        prevEl: element.querySelector('.swiper-button-prev'),
+                    },
+                    pagination: {
+                        el: element.querySelector('.swiper-pagination'),
+                        clickable: true,
+                        dynamicBullets: true,
+                    },
+                    touchRatio: 1,
+                    touchAngle: 45,
+                    grabCursor: true,
+                    preventClicks: false,
+                    preventClicksPropagation: false,
+                    effect: 'slide',
+                    speed: 300,
+                    spaceBetween: 0,
+                    slidesPerView: 1,
+                    centeredSlides: false,
+                    watchSlidesProgress: true,
+                    allowTouchMove: true,
+                    resistance: true,
+                    resistanceRatio: 0.85,
+                    on: {
+                        init: function() {
+                            this.el.style.opacity = '1';
+                        }
+                    }
+                });
+                
+                this.swipers.push(swiper);
+            });
+        }
     }
 }
 
